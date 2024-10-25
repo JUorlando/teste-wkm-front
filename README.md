@@ -20,8 +20,8 @@ A API deve estar acessível em: `http://localhost:1337/api`
 ### 1. Clonar o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <NOME_DA_PASTA_DO_PROJETO>
+git clone (https://github.com/JUorlando/teste-wkm-front.git)
+cd teste-wkmfront
 ```
 
 ### 2. Instalar as dependências
