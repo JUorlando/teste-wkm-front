@@ -1,13 +1,14 @@
-import Link from 'next/link';
+import Link from "next/link";
+import "../app/styles/globals.css";
 
 export default function Home() {
-    return (
-        <div style={{ padding: '20px' }}>
-            <h1>Bem-vindo à Aplicação</h1>
-            <p>Use o link abaixo para adicionar uma nova pessoa:</p>
-            <Link href="/pessoa/add">
-                <button style={{ padding: '10px 20px' }}>Adicionar Pessoa</button>
-            </Link>
-        </div>
-    );
+  return (
+    <div className="box">
+      <h1 className="title">Bem-vindo à Aplicação WKM</h1>
+      <p className="text">Use o link abaixo para adicionar uma nova pessoa:</p>
+      <Link href="/pessoa/add">
+        <button className="btn">Adicionar</button>
+      </Link>
+    </div>
+  );
 }

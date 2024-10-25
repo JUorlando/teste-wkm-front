@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { pessoaSchema } from "../../schemas/schemas";
-import { ICidade, IEstado } from "../../interface/interfaces";
+import { ICidade, IEstado, ApiError } from "../../interface/interfaces";
+import "../../styles/globals.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const PessoaAdd = () => {
   const [cidades, setCidades] = useState<ICidade[]>([]);
@@ -92,46 +95,102 @@ const PessoaAdd = () => {
         window.location.href = `/pessoa/${documentId}`;
       } catch (error) {
         console.error("Erro ao enviar o formulário", error);
-        setErrors({ submit: "Erro ao cadastrar a pessoa. Tente novamente." });
+
+        const apiError = error as { response?: { data?: ApiError } };
+
+        if (apiError.response?.data?.error) {
+          const validationErrors = apiError.response.data.error.details.errors;
+
+          const emailError = validationErrors.find((err) =>
+            err.path.includes("email")
+          );
+          if (emailError) {
+            setErrors((prev) => ({
+              ...prev,
+              email: "Esse email já existe. Tente outro.",
+            }));
+          } else {
+            setErrors({
+              submit: "Erro ao cadastrar a pessoa. Tente novamente.",
+            });
+          }
+        } else {
+          setErrors({ submit: "Erro ao cadastrar a pessoa. Tente novamente." });
+        }
       }
     }
   };
 
+  console.log("Dados do formulário:", formData);
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Nome</label>
-        <input
-          type="text"
-          name="nome"
-          value={formData.nome}
-          onChange={handleChange}
-          placeholder="Nome"
-          required
-        />
-        {errors.nome && <span>{errors.nome}</span>}
+    <form className="box" onSubmit={handleSubmit}>
+      <div className="mb-5">
+        <label className="label">
+          Nome
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            <FontAwesomeIcon
+              icon={faUser}
+              className="w-4 h-4 text-green-500 dark:text-green-400"
+            />
+          </div>
+          <input
+            type="text"
+            name="nome"
+            value={formData.nome}
+            onChange={handleChange}
+            placeholder="Nome"
+            required
+            className="input"
+          />
+          {errors.nome && (
+            <span className="span">
+              <span className="font-medium"></span> {errors.nome}
+            </span>
+          )}
+        </div>
       </div>
 
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="digite seu email"
-          required
-        />
-        {errors.email && <span>{errors.email}</span>}
+      <div className="mb-5">
+        <label className="label">
+          Email
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              className="w-4 h-4 text-green-500 dark:text-green-400"
+            />
+          </div>
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Digite seu email"
+            required
+            className="input"
+          />
+          {errors.email && (
+            <span className="span">
+              <span className="font-medium"></span> {errors.email}
+            </span>
+          )}
+        </div>
       </div>
 
-      <div>
-        <label>Estado</label>
+      <div className="mb-5">
+        <label className="label">
+          Estado
+        </label>
         <select
           name="estado"
           value={formData.estado}
           onChange={handleEstadoChange}
           required
+          className="select"
         >
           <option value="">Selecione seu estado</option>
           {estados.map((estado) => (
@@ -140,16 +199,23 @@ const PessoaAdd = () => {
             </option>
           ))}
         </select>
-        {errors.estado && <span>{errors.estado}</span>}{" "}
+        {errors.estado && (
+          <span className="span">
+            <span className="font-medium"></span> {errors.estado}
+          </span>
+        )}
       </div>
 
-      <div>
-        <label>Cidade</label>
+      <div className="mb-5">
+        <label className="label">
+          Cidade
+        </label>
         <select
           name="cidade"
           value={formData.cidade}
           onChange={handleChange}
           required
+          className="select"
         >
           <option value="">Selecione sua cidade</option>
           {cidades.map((cidade) => (
@@ -158,10 +224,16 @@ const PessoaAdd = () => {
             </option>
           ))}
         </select>
-        {errors.cidade && <span>{errors.cidade}</span>}{" "}
+        {errors.cidade && (
+          <span className="span">
+            <span className="font-medium"></span> {errors.cidade}
+          </span>
+        )}
       </div>
 
-      <button type="submit">Cadastrar</button>
+      <button className="btn" type="submit">
+        Cadastrar
+      </button>
     </form>
   );
 };
