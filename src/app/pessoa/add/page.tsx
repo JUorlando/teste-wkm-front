@@ -121,8 +121,6 @@ const PessoaAdd = () => {
     }
   };
 
-  console.log("Dados do formulário:", formData);
-
   return (
     <form className="box" onSubmit={handleSubmit}>
       <div className="mb-5">
@@ -130,10 +128,10 @@ const PessoaAdd = () => {
           Nome
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+          <div className="absolute inset-y-0 start-0 flex items-center justify-center ps-3.5 pointer-events-none">
             <FontAwesomeIcon
               icon={faUser}
-              className="w-4 h-4 text-green-500 dark:text-green-400"
+              className="w-4 h-4 text-green-500 dark:text-green-400 flex justify-center items-center"
             />
           </div>
           <input
@@ -145,12 +143,12 @@ const PessoaAdd = () => {
             required
             className="input"
           />
+        </div>
           {errors.nome && (
             <span className="span">
               <span className="font-medium"></span> {errors.nome}
             </span>
           )}
-        </div>
       </div>
 
       <div className="mb-5">
@@ -158,10 +156,10 @@ const PessoaAdd = () => {
           Email
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+          <div className="absolute inset-y-0 start-0 flex items-center justify-center ps-3.5 pointer-events-none">
             <FontAwesomeIcon
               icon={faEnvelope}
-              className="w-4 h-4 text-green-500 dark:text-green-400"
+              className="w-4 h-4 text-green-500 dark:text-green-400 flex justify-center items-center"
             />
           </div>
           <input
@@ -173,12 +171,12 @@ const PessoaAdd = () => {
             required
             className="input"
           />
+        </div>
           {errors.email && (
             <span className="span">
               <span className="font-medium"></span> {errors.email}
             </span>
           )}
-        </div>
       </div>
 
       <div className="mb-5">
