@@ -139,7 +139,7 @@ const PessoaAdd = () => {
             name="nome"
             value={formData.nome}
             onChange={handleChange}
-            placeholder="Nome"
+            placeholder="Seu Nome"
             required
             className="input"
           />
@@ -167,7 +167,7 @@ const PessoaAdd = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Digite seu email"
+            placeholder="email@gmail.com"
             required
             className="input"
           />
