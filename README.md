@@ -104,7 +104,7 @@ A estrutura de pastas do projeto é organizada da seguinte forma:
 - **React JS**
 - **Next.js**
 - **Axios** - Para requisições HTTP.
-- **Styled-components** - Para estilização.
+- **Tailwind** - Para estilização.
 - **Zod** - Para validação de dados.
 - **TypeScript** - Para tipagem estática.
 
