@@ -40,14 +40,30 @@ yarn install
 npm install
 ```
 
-### 3. Iniciar a aplicação
+### 3.Rodar o build
+
+Após instalar as dependências, você pode preparar o ambiente rodando o comando build:
+
+#### Com Yarn:
+
+```bash
+yarn build
+```
+
+#### Com npm:
+
+```bash
+npm run build
+```
+
+### 4. Iniciar a aplicação
 
 Após instalar as dependências, você pode iniciar a aplicação utilizando:
 
 #### Com Yarn:
 
 ```bash
-yarn dev
+yarn start
 ```
 
 #### Com npm:
